@@ -1,0 +1,178 @@
+@use 'header';
+@use 'footer';
+@use 'faq';
+@use 'available-devices';
+@use 'plans';
+@use 'shows';
+@use 'hero';
+@use 'variables';
+
+@font-face {
+ font-family: 'Avenir';
+ src: url(./../../assets/fonts/Avenir-Regular.woff2);
+ font-weight: 400;
+}
+
+@font-face {
+ font-family: 'Avenir';
+ src: url(./../../assets/fonts/Avenir-Bold.woff2);
+ font-weight: 700;
+}
+
+* {
+ margin: 0;
+ padding: 0;
+ box-sizing: border-box;
+ font-family: 'Avenir', sans-serif;
+ list-style: none;
+ img {
+  pointer-events: none;
+  -webkit-user-drag: none;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+ }
+}
+
+@mixin title($font-size: 40px) {
+ @include text($font-size);
+ color: white;
+}
+
+@mixin text($font-size: 16px) {
+ font-size: $font-size;
+ line-height: $font-size + 10px;
+ color: silver;
+}
+
+body {
+ background-color: variables.$primaryColor;
+}
+
+.title--large {
+ @include title(44px);
+ @media (max-width: 768px) {
+  @include title(26px);
+ }
+}
+
+.title--medium {
+ @include title;
+ @media (max-width: 768px) {
+  @include title(24px);
+ }
+}
+
+.title--small {
+ @include title(28px);
+ @media (max-width: 768px) {
+  @include title(22px);
+ }
+}
+
+.text--large {
+ @include text(18px);
+ @media (max-width: 768px) {
+  @include text(15px);
+ }
+}
+
+.text--medium {
+ @include text;
+ @media (max-width: 768px) {
+  @include text(14px);
+ }
+}
+
+.text--small {
+ color: silver;
+ @include text(12px);
+ @media (max-width: 768px) {
+  @include title(11px);
+ }
+}
+
+.link {
+ @include text(18px);
+ color: white;
+ text-decoration: underline;
+}
+
+.button {
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ width: 100%;
+ height: 60px;
+ font-size: 18px;
+ color: silver;
+ background-color: variables.$primaryColorBackgroundButton;
+ border: 1px solid variables.$primaryColor;
+ border-radius: 4px;
+ color: white;
+ cursor: pointer;
+ text-transform: uppercase;
+ text-decoration: none;
+ padding: 8px 14px;
+ letter-spacing: 1px;
+ &:hover {
+  background-color: lighten(variables.$primaryColorBackgroundButton, 3%);
+ }
+ &--secondary {
+  background-color: variables.$secondaryColorBackgroundButton;
+  border-color: variables.$secondaryColorBackgroundButton;
+  &:hover {
+   background-color: lighten(variables.$secondaryColorBackgroundButton, 3%);
+  }
+ }
+ &--tertiary {
+  background-color: rgba(variables.$tertiaryColorBackgroundButton, 0.8);
+  border-color: white;
+  &:hover {
+   background-color: white;
+   color: variables.$primaryColor;
+  }
+ }
+}
+
+.image-text-section {
+ padding: 5.6vw;
+ display: grid;
+ grid-template-columns: 1fr 1fr;
+ align-items: center;
+ @media (max-width: 768px) {
+  display: block;
+ }
+ img {
+  max-width: 100%;
+ }
+ &__text_container {
+  padding: 0  2vw;
+  h2 {
+   margin: 12px 0 24px 0;
+  }
+ }
+ &--image-full-width {
+  position: relative;
+  display: block;
+  img {
+   width: 100%;
+  }
+  &__text_container {
+   position: absolute;
+   top: 0;
+   left: 50%;
+   height: 100%;
+   width: calc(50% - 5.6vw);
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   @media (max-width: 768px) {
+    position: relative;
+    left: 0;
+    width: 100%;
+   }
+  }
+ }
+}
