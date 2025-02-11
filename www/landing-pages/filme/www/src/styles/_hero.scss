@@ -1,0 +1,29 @@
+.hero {
+ &__video {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  min-width: auto;
+  min-height: auto;
+ }
+ &__content {
+  position: relative;
+  display: block;
+  text-align: center;
+  text-decoration: underline;
+  height: 100vh;
+  h1 {
+   position: relative;
+   top: 450px;
+  }
+  button {
+   position: relative;
+   top: 90vh;
+   padding: 15px 10px 15px 10px;
+   background-color: rgba(0, 0, 0, 0.7);
+   border: 1px solid white;
+   border-radius: 6px;
+   color: white;
+  }
+ }
+}

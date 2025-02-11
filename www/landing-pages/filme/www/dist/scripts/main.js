@@ -1,0 +1,1 @@
+var video=document.getElementById("video"),button=document.getElementById("button");function myFunction(){1==video.muted?(video.volume=.5,video.muted=!1,button.innerHTML="MUTE"):0==video.muted&&(video.muted=!0,button.innerHTML="UN-MUTE")}
