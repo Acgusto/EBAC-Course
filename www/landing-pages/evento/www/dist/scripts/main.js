@@ -1,1 +1,1 @@
-AOS.init();
+AOS.init();let eventDate=new Date("Dec 12, 2025 19:00:00"),evenTimeStamp=eventDate.getTime(),hoursTimer=setInterval(function(){var e=(new Date).getTime(),e=evenTimeStamp-e,t=Math.floor(e/864e5),n=Math.floor(e%864e5/36e5),r=Math.floor(e%36e5/6e4),a=Math.floor(e%6e4/1e3);document.getElementById("timer").innerHTML=t+`d ${n}h ${r}m ${a}s`,e<0&&(clearInterval(hoursTimer),document.getElementById("timer").innerHTML="Evento Expirado")},1e3);
