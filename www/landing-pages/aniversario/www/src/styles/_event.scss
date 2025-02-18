@@ -1,0 +1,18 @@
+.event {
+ h2 {
+  display: flex;
+  margin: 15px 0;
+ }
+ &__details {
+  display: flex;
+  margin: 30px 0;
+  &__text {
+   &--reverse {
+    justify-content: end;
+   }
+   img {
+    border-radius: 6px;
+   }
+  }
+ }
+}
