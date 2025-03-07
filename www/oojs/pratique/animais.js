@@ -4,7 +4,7 @@ class Animal {
   this.idade = idade;
  }
  fazerSom() {
-  throw new Error("Método 'fazerSom' deve ser implementado na subclasse.");
+  throw new Error("Método não implementado na subclasse.");
  }
 }
 
