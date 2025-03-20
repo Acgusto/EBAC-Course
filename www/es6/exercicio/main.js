@@ -11,4 +11,5 @@ function alunosAprovados(alunos) {
 }
 
 const aprovados = alunosAprovados(alunos);
+
 console.log(aprovados);
