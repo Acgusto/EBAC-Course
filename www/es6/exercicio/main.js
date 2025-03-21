@@ -1,3 +1,4 @@
+
 const alunos = [
  { nome: "João", nota: 4.5 },
  { nome: "Maria", nota: 9.0 },
