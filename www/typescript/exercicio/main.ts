@@ -1,7 +1,7 @@
-function multiplicaDois(a: number, b: number) {
+function multiplica(a: number, b: number) {
  return a * b;
 }
 
-function dizOlaDois(nome: string) {
+function dizOla(nome: string) {
  return "Olá " + nome;
 }
