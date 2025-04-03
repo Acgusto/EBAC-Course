@@ -1,28 +1,47 @@
-const imagemin = require('gulp-imagemin');
+const babel = require('gulp-babel');
+const cleanCSS = require('gulp-clean-css');
 const gulp = require('gulp');
+const htmlmin = require('gulp-htmlmin');
 const sass = require('gulp-sass')(require('sass'));
+const sourcemaps = require('gulp-sourcemaps');
+const typescript = require('gulp-typescript');
 const uglify = require('gulp-uglify');
 
-function scripts() {
- return gulp.src('./www/src/scripts/*.js')
- .pipe(uglify())
- .pipe(gulp.dest('./www/dist/scripts'))
-}
+const tsconfig = typescript.createProject('tsconfig.json');
 
-function styles() {
- return gulp.src('./www/src/styles/*.scss')
- .pipe(sass({outputStyle: 'compressed'}))
- .pipe(gulp.dest('./www/dist/styles'));
-}
+gulp.task('minify-html', () => {
+ return gulp.src('www/src/pages/**/*.html')
+  .pipe(htmlmin({ collapseWhitespace: true }))
+  .pipe(gulp.dest('www/dist/pages'));
+});
 
-function images() {
- return gulp.src('./www/src/images/**/*')
- .pipe(imagemin())
- .pipe(gulp.dest('./www/dist/images'));
-}
+gulp.task('minify-css', () => {
+ return gulp.src('www/src/styles/**/*.scss')
+  .pipe(sourcemaps.init())
+  .pipe(sass().on('error', sass.logError))
+  .pipe(cleanCSS())
+  .pipe(sourcemaps.write('.'))
+  .pipe(gulp.dest('www/dist/styles'));
+});
 
-exports.default = gulp.parallel(styles, images, scripts);
-exports.watch = function() {
- gulp.watch('./www/src/styles/*.scss', gulp.parallel(styles))
- gulp.watch('./www/src/scripts/*.js', gulp.parallel(scripts))
-}
+gulp.task('uglify-js', () => {
+ return tsconfig.src()
+  .pipe(sourcemaps.init())
+  .pipe(tsconfig())
+  .pipe(babel({
+    presets: ['@babel/preset-env']
+  }))
+  .pipe(uglify())
+  .pipe(sourcemaps.write('.'))
+  .pipe(gulp.dest('www/dist/scripts'));
+});
+
+gulp.task('build', gulp.parallel('minify-html', 'minify-css', 'uglify-js'));
+
+gulp.task('watch', () => {
+  gulp.watch('www/src/pages/**/*.html', gulp.series('minify-html'));
+  gulp.watch('www/src/styles/**/*.scss', gulp.series('minify-css'));
+  gulp.watch('www/src/scripts/**/*.ts', gulp.series('uglify-js'));
+});
+
+gulp.task('default', gulp.series('build', 'watch'));
