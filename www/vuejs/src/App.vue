@@ -1,49 +1,47 @@
 <script setup>
- const nome = "augusto"
-
- const meuObj = {
-  nome: "Augusto",
-  filmeFavorito: "Fallen Angels"
- }
-
- function dizOla(nome) {
-  return `${nome} diz oi`;
- }
-
- const batman = "https://upload.wikimedia.org/wikipedia/en/c/c7/Batman_Infobox.jpg"
- const superman = "https://upload.wikimedia.org/wikipedia/en/3/35/Supermanflying.png"
-
- const botaoDesabilitado = false
-
- const gostaDoBatman = false
- const gostaDoSuperman = true
-
- const estaAutorizado = false
+import HelloWorld from './components/HelloWorld.vue'
+import TheWelcome from './components/TheWelcome.vue'
 </script>
 
 <template>
- <h1>
-  Goodbye, {{ dizOla("paula") }}!
- </h1>
+  <header>
+    <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
 
- <img v-if="gostaDoBatman" :src="batman" alt="">
- <img v-else-if="gostaDoSuperman" :src="superman" alt="">
- <h2 v-else>
-  Não curte heróis da DC
- </h2>
+    <div class="wrapper">
+      <HelloWorld msg="You did it!" />
+    </div>
+  </header>
 
- <h1 v-if="estaAutorizado">
-  Bem-vindo
- </h1>
- <h1 v-else>
-  Não possui acesso
- </h1>
-
- <button :disabled="!botaoDesabilitado">enviar mensagem</button>
+  <main>
+    <TheWelcome />
+  </main>
 </template>
 
 <style scoped>
- img {
-  max-width: 200px;
- }
+header {
+  line-height: 1.5;
+}
+
+.logo {
+  display: block;
+  margin: 0 auto 2rem;
+}
+
+@media (min-width: 1024px) {
+  header {
+    display: flex;
+    place-items: center;
+    padding-right: calc(var(--section-gap) / 2);
+  }
+
+  .logo {
+    margin: 0 2rem 0 0;
+  }
+
+  header .wrapper {
+    display: flex;
+    place-items: flex-start;
+    flex-wrap: wrap;
+  }
+}
 </style>

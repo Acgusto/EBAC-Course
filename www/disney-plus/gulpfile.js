@@ -10,7 +10,7 @@ const uglify = require('gulp-uglify');
 const tsconfig = typescript.createProject('tsconfig.json');
 
 gulp.task('minify-html', () => {
- return gulp.src('www/src/pages/**/*.html')
+ return gulp.src('www/src/**/*.html')
   .pipe(htmlmin({ collapseWhitespace: true }))
   .pipe(gulp.dest('www/dist/pages'));
 });
@@ -39,7 +39,7 @@ gulp.task('uglify-js', () => {
 gulp.task('build', gulp.parallel('minify-html', 'minify-css', 'uglify-js'));
 
 gulp.task('watch', () => {
-  gulp.watch('www/src/pages/**/*.html', gulp.series('minify-html'));
+  gulp.watch('www/src/**/*.html', gulp.series('minify-html'));
   gulp.watch('www/src/styles/**/*.scss', gulp.series('minify-css'));
   gulp.watch('www/src/scripts/**/*.ts', gulp.series('uglify-js'));
 });
