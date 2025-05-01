@@ -1,3 +1,4 @@
+import Formulario from "./components/Formulario"
 import Perfil from "./components/Perfil"
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
     Subtitulo
    </h2>
    {estaDeDia ? 'Bom dia!' : 'Boa Tarde!'}
+   <Formulario></Formulario>
   </div>
  )
 }
