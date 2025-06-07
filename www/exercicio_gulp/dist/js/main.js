@@ -1,0 +1,1 @@
+function greet(o){const e=`Hello, ${o}!`;console.log(e)}greet("World");
